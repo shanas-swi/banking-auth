@@ -3,7 +3,7 @@ package domain
 import (
 	"github.com/ashishjuyal/banking-lib/errs"
 	"github.com/ashishjuyal/banking-lib/logger"
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 type AuthToken struct {

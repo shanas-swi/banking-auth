@@ -1,7 +1,7 @@
 package domain
 
 import (
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v5"
 	"time"
 )
 
@@ -15,7 +15,7 @@ type RefreshTokenClaims struct {
 	Accounts   []string `json:"accounts"`
 	Username   string   `json:"un"`
 	Role       string   `json:"role"`
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 }
 
 type AccessTokenClaims struct {
@@ -23,7 +23,7 @@ type AccessTokenClaims struct {
 	Accounts   []string `json:"accounts"`
 	Username   string   `json:"username"`
 	Role       string   `json:"role"`
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 }
 
 func (c AccessTokenClaims) IsUserRole() bool {
@@ -66,8 +66,8 @@ func (c AccessTokenClaims) RefreshTokenClaims() RefreshTokenClaims {
 		Accounts:   c.Accounts,
 		Username:   c.Username,
 		Role:       c.Role,
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(REFRESH_TOKEN_DURATION).Unix(),
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(REFRESH_TOKEN_DURATION)),
 		},
 	}
 }
@@ -78,8 +78,8 @@ func (c RefreshTokenClaims) AccessTokenClaims() AccessTokenClaims {
 		Accounts:   c.Accounts,
 		Username:   c.Username,
 		Role:       c.Role,
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(ACCESS_TOKEN_DURATION).Unix(),
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(ACCESS_TOKEN_DURATION)),
 		},
 	}
 }

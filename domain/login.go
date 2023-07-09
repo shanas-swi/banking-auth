@@ -2,7 +2,6 @@ package domain
 
 import (
 	"database/sql"
-	"github.com/dgrijalva/jwt-go"
 	"strings"
 	"time"
 )

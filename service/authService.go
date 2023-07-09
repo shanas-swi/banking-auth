@@ -2,11 +2,10 @@ package service
 
 import (
 	"fmt"
-	"github.com/ashishjuyal/banking-auth/domain"
-	"github.com/ashishjuyal/banking-auth/dto"
 	"github.com/ashishjuyal/banking-lib/errs"
 	"github.com/ashishjuyal/banking-lib/logger"
-	"github.com/dgrijalva/jwt-go"
+	"github.com/shanas-swi/banking-auth/domain"
+	"github.com/shanas-swi/banking-auth/dto"
 )
 
 type AuthService interface {

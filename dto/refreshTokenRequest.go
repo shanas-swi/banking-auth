@@ -2,8 +2,7 @@ package dto
 
 import (
 	"errors"
-	"github.com/ashishjuyal/banking-auth/domain"
-	"github.com/dgrijalva/jwt-go"
+	"github.com/shanas-swi/banking-auth/domain"
 )
 
 type RefreshTokenRequest struct {
